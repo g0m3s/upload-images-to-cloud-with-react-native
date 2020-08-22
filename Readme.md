@@ -1,13 +1,13 @@
-# COMO FAZER UPLOAD DE IMAGENS PARA A NUVEM USANDO A API DO CLOUDINARY COM REACT NATIVE
+# Como fazer upload de imagens para a nuvem usando a API do cloudinary com React Native
 
 Estou a escrever este pequeno artigo pois recentemente encontrei certa dificuldade para conseguir realizar esta tarefa em um projeto.
 
 Vamos lá:
 
 - Faça cadastro no [Cloudinary](https://cloudinary.com/users/register/free)
-- Adicionar o [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) (ele permite que o usuário consiga adicionar fotos que estão em sua galeria)
-- Adicionar o [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer) (como o nome sugere, permite fazer uma modificação no tamanho da imagem que será posteriormente enviada para a nuvem, além de permitir uma compressão, diminuindo o tamanho da imagem final)
-- Adicionar o [react-native-image-base64](https://www.npmjs.com/package/react-native-image-base64) (vai permitir a codificação)
+- Adicione ao seu projeto o [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) (ele permite que o usuário consiga adicionar fotos que estão em sua galeria)
+- Adicione ao seu projeto o [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer) (como o nome sugere, permite fazer uma modificação no tamanho da imagem que será posteriormente enviada para a nuvem, além de permitir uma compressão, diminuindo o tamanho da imagem final)
+- Adicione ao seu projeto o [react-native-image-base64](https://www.npmjs.com/package/react-native-image-base64) (vai permitir a codificação)
 
 Bom, vou começar com o código inteiro e depois o explicarei por partes, certo?
 
