@@ -81,16 +81,17 @@ export default function App () {
 }
 ```
 
-##Configurações Cloudinary
+## Configurações Cloudinary
 
-Após fazer um cadastro no Cloudinary, clique nas configurações (canto superior direito):
+- Após fazer um cadastro no Cloudinary, clique nas configurações (canto superior direito):
 ![foto botão configurações](imgs/config.png)
 
-Entre na seção "Upload":
+- Entre na seção "Upload":
+
 ![foto opção Upload](imgs/upload.png)
 
-Vá para a seção "Upload presets" e clique para adicionar um novo:
+- Vá para a seção "Upload presets" e clique para adicionar um novo:
 ![foto seção presets Upload](imgs/presetUpload.png)
 
-Troque a opção "Signing Mode" para "unsigned" e salve:
+- Troque a opção "Signing Mode" para "unsigned" e salve:
 ![foto Signing Mode](imgs/SigningMode.png)
