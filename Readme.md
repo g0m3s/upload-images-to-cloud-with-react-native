@@ -1,5 +1,6 @@
 Estou a escrever este pequeno artigo pois recentemente encontrei certa dificuldade para conseguir realizar esta tarefa. ...............completar.............
 
+- Faça cadastro no [Cloudinary](https://cloudinary.com/users/register/free)
 - Adicionar o [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) (ele permite que o usuário consiga adicinar fotos que estão em sua galeria)
 - Adicionar o [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer) (como o nome sugere, permite fazer uma modificação no tamanha da imagem que será posteriormente enviada para a nuvem, além de permitir uma compressão, diminuindo o tamanho da imagem final)
 - Adicionar o [react-native-image-base64](https://www.npmjs.com/package/react-native-image-base64) (vai permitir a codificação)
@@ -40,10 +41,10 @@ export default function App () {
 
         const data = new FormData()
         data.append('file',newImage)
-        data.append('upload_preset','testup')
-        data.append("cloud_name","pdsgij")
+        data.append('upload_preset','SEU_UPLOAD_PRESET')
+        data.append("cloud_name","SEU_NOME_DE_USUARIO_NO_CLOUDINARY")
 
-        fetch("https://api.cloudinary.com/v1_1/pdsgij/upload", {
+        fetch("https://api.cloudinary.com/v1_1/SEU_NOME_DE_USUARIO_NO_CLOUDINARY/upload", {
 
             method: 'POST',
             body: data
@@ -79,3 +80,17 @@ export default function App () {
 
 }
 ```
+
+##Configurações Cloudinary
+
+Após fazer um cadastro no Cloudinary, clique nas configurações (canto superior direito):
+![foto botão configurações](imgs/config.)
+
+Entre na seção "Upload":
+![foto opção Upload](imgs/upload.)
+
+Vá para a seção "Upload presets" e clique para adicionar um novo:
+![foto seção presets Upload](imgs/presetUpload.)
+
+Troque a opção "Signing Mode" para "unsigned" e salve:
+![foto Signing Mode](imgs/SigningMode.)
