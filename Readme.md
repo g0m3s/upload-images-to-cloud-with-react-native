@@ -6,6 +6,7 @@ Estou a escrever este pequeno artigo pois recentemente encontrei certa dificulda
 
 Bom, vou começar com o código inteiro e depois o explicarei por partes, fechô?
 
+```
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 
@@ -15,47 +16,66 @@ import ImgToBase64 from 'react-native-image-base64'
 
 export default function App () {
 
-function uploadImageToCloud (images) {
+    function resizeImages (images) {
 
-ImageResizer.createResizedImage(images[0].path, 80, 80, 'JPEG', 50)
-.then(res => {
+        ImageResizer.createResizedImage(images[0].path, 80, 80, 'JPEG', 50)
+        .then(res => {
 
+            ImgToBase64.getBase64String(res.path)
+            .then(base64String => uploadImageToCloud(base64String))
+            .catch(err => console.log(err));
+
+            })
+            .catch(err => {
+
+                console.log(err)
+
+            });
+
+    }
+
+    function uploadImageToCloud (path) {
+
+        let newImage = `data:jpeg;base64,${path}`
+
+        const data = new FormData()
+        data.append('file',newImage)
+        data.append('upload_preset','testup')
+        data.append("cloud_name","pdsgij")
+
+        fetch("https://api.cloudinary.com/v1_1/pdsgij/upload", {
+
+            method: 'POST',
+            body: data
+
+        })
+        // .then( async res => { dataResult = await res.json() } )
+        .then( async res=> await res.json() )
+        .then(data=>{
+            console.log(data)
+        })
+
+    }
+    
+    return (
+        
+        <TouchableOpacity
+            onPress = {()=> ImageWorkPicker.openPicker({
+                height: 80,
+                width:80,
+                includeBase64: true,
+                multiple: true
+            }).then(images => {
+                //   console.log(images)
+                resizeImages(images)
+            })}
+        >
+
+            <Text>Escolha as fotos</Text>
+
+        </TouchableOpacity>
+    
+    )
+
+}
 ```
-    ImgToBase64.getBase64String(res.path)
-    .then(base64String => uploadWorkImages(base64String))
-    .catch(err => console.log(err));
-
-    })
-    .catch(err => {
-
-        console.log(err)
-
-    });
-
-}
-
-function uploadWorkImages (path) {
-
-    let newImage = `data:jpeg;base64,${path}`
-
-    const data = new FormData()
-    data.append('file',newImage)
-    data.append('upload_preset','testup')
-    data.append("cloud_name","pdsgij")
-
-    fetch("https://api.cloudinary.com/v1_1/pdsgij/upload", {
-
-        method: 'POST',
-        body: data
-
-    })
-    // .then( async res => { dataResult = await res.json() } )
-    .then( async res=> await res.json() )
-    .then(data=>{
-        console.log(data)
-    })
-```
-
-}
-
-}
