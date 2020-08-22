@@ -1,11 +1,15 @@
-Estou a escrever este pequeno artigo pois recentemente encontrei certa dificuldade para conseguir realizar esta tarefa. ...............completar.............
+# COMO FAZER UPLOAD DE IMAGENS PARA A NUVEM USANDO A API DO CLOUDINARY COM REACT NATIVE
+
+Estou a escrever este pequeno artigo pois recentemente encontrei certa dificuldade para conseguir realizar esta tarefa em um projeto.
+
+Vamos lá:
 
 - Faça cadastro no [Cloudinary](https://cloudinary.com/users/register/free)
-- Adicionar o [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) (ele permite que o usuário consiga adicinar fotos que estão em sua galeria)
-- Adicionar o [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer) (como o nome sugere, permite fazer uma modificação no tamanha da imagem que será posteriormente enviada para a nuvem, além de permitir uma compressão, diminuindo o tamanho da imagem final)
+- Adicionar o [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) (ele permite que o usuário consiga adicionar fotos que estão em sua galeria)
+- Adicionar o [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer) (como o nome sugere, permite fazer uma modificação no tamanho da imagem que será posteriormente enviada para a nuvem, além de permitir uma compressão, diminuindo o tamanho da imagem final)
 - Adicionar o [react-native-image-base64](https://www.npmjs.com/package/react-native-image-base64) (vai permitir a codificação)
 
-Bom, vou começar com o código inteiro e depois o explicarei por partes, fechô?
+Bom, vou começar com o código inteiro e depois o explicarei por partes, certo?
 
 ```
 import React from 'react'
@@ -89,11 +93,14 @@ export default function App () {
 
 ![foto opção Upload](imgs/upload.png)
 
+
 - Vá para a seção "Upload presets" e clique para adicionar um novo:
 ![foto seção presets Upload](imgs/presetUpload.png)
 
+
 - Troque a opção "Signing Mode" para "unsigned" e salve:
 ![foto Signing Mode](imgs/SigningMode.png)
+
 
 ## Código
 
@@ -122,6 +129,7 @@ return (
     
 ```
 
+
 - Ao clicar neste botão e escolher as imagens estas serão tratadas para que sejam enviadas para a nuvem. Faremos uma compressão e diminuiremos seu tamanho usando a biblioteca "react-native-image-resizer":
 
 ```
@@ -148,6 +156,7 @@ function resizeImages (images) {
 
 Recebemos como parâmetro o caminho da imagem a ser renderizada, a altura, a largura, o formato de saida e a qualidade final que desejamos (neste caso, 80% da original).
 
+
 - Quando essa compressão acabar, faremos a conversão para base64 (requisito da API do Cloudinary):
 
 ```
@@ -157,6 +166,7 @@ ImgToBase64.getBase64String(res.path)
     .catch(err => console.log(err));
 
 ```
+
 
 - Enviaremos então esta informação para a função que finalmente fará o upload das imagens:
 
@@ -185,9 +195,33 @@ function uploadImageToCloud (path) {
 
 ```
 
-Ela recebe o caminho do arquivo, faz as configurações necessárias como definir o upload_preset e o cloud name. Daí faz o post na API e você terá um retorno parecido com isto:
+
+- Ela recebe o caminho do arquivo, faz as configurações necessárias como definir o upload_preset e o cloud name que você configurou nos passos anteriores . Daí faz o post na API e você terá um retorno parecido com isto:
 
 ```
 
+access_mode: "public"
+asset_id: "f53542dbd295d8b02805bae18d7e2a99"
+bytes: 2058
+created_at: "2020-08-22T22:57:53Z"
+etag: "6e8e2b208ca5af3300db400e70204b2b"
+format: "jpg"
+height: 53
+placeholder: false
+public_id: "vcayx3q68ihhtjpogrof"
+resource_type: "image"
+secure_url: "https://res.cloudinary.com/pdsgij/image/upload/v1598137073/vcayx3q68ihhtjpogrof.jpg"
+signature: "0e8f3f984ad445870b2cb11e822624eb7fd974ec"
+tags: []
+type: "upload"
+url: "http://res.cloudinary.com/pdsgij/image/upload/v1598137073/vcayx3q68ihhtjpogrof.jpg"
+version: 1598137073
+version_id: "f116552d99814e5d08ff11eacff1fa4a"
+width: 80
 
 ```
+
+Agora é só salvar o url no seu banco de dados para acessar posteriormente!
+
+
+Espero que isto te seja muito útil :)
