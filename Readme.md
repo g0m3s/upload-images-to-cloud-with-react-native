@@ -130,7 +130,7 @@ return (
 ```
 
 
-- Ao clicar neste botão e escolher as imagens estas serão tratadas para que sejam enviadas para a nuvem. Faremos uma compressão e diminuiremos seu tamanho usando a biblioteca "react-native-image-resizer":
+- Ao clicar neste botão e escolher as imagens estas serão tratadas para que sejam enviadas para a nuvem. Faremos uma compressão e diminuiremos seu tamanho usando a biblioteca "react-native-image-resizer": Uma observação é que para fins didáticos eu só estou usando a primeira imagem escolhida (images[0])
 
 ```
 
